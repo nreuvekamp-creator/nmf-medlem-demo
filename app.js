@@ -16,8 +16,9 @@
   ];
   var maxTier = Math.max.apply(null, C.tiers);
   var axisMax = Math.ceil(maxTier / C.krPerKg / 250) * 250;   // 10 000 kr -> 1 000 kg
-  var lang = /[?&]lang=(no|en)\b/.exec(location.search);
-  lang = lang ? lang[1] : (localStorage.getItem('nmf-lang') === 'en' ? 'en' : 'no');
+  var lang = /[?&]lang=(no|en)\b/.exec(location.search), saved;
+  try { saved = localStorage.getItem('nmf-lang'); } catch (e) {}   // throws in private mode / cookies blocked
+  lang = lang ? lang[1] : (saved === 'en' ? 'en' : 'no');
 
   var custom = $('#custom'), bar = $('#bar'), chart = $('#chart'), headline = $('#kg-headline');
   var numEl = document.createElement('span');
@@ -34,12 +35,11 @@
     return s.replace(/\{(\w+)\}/g, function (m, k) { return k in vars ? vars[k] : m; });
   }
 
-  function membershipKr() { return +$('input[name=membership]:checked').value; }
+  // valueAsNumber, not parseInt: "1e3" is 1000. ponytail: clamp at 10 M kr, fmt() garbles numbers past 1e21.
+  function customKr() { var c = Math.min(Math.floor(custom.valueAsNumber), 1e7); return c > 0 ? c : 0; }
   function extraKr() {
-    var c = parseInt(custom.value, 10);
-    if (c > 0) return c;
     var r = $('input[name=tier]:checked');
-    return r ? +r.value : 0;
+    return customKr() || (r ? +r.value : 0);
   }
 
   function equivalence(kg) {
@@ -57,17 +57,18 @@
     cancelAnimationFrame(raf);
     if (reduceMotion) { shownKg = target; numEl.textContent = fmt(target); return; }
     var from = shownKg, t0 = performance.now();
+    headline.setAttribute('aria-busy', 'true');   // live region: announce the final number, not every frame
     (function step(now) {
       var p = Math.min(1, (now - t0) / 600);
       p = 1 - Math.pow(1 - p, 3);
       shownKg = from + (target - from) * p;
       numEl.textContent = fmt(shownKg);
-      if (p < 1) raf = requestAnimationFrame(step);
+      if (p < 1) raf = requestAnimationFrame(step); else headline.removeAttribute('aria-busy');
     })(t0);
   }
 
   function update() {
-    var total = membershipKr() + extraKr();
+    var total = +$('input[name=membership]:checked').value + extraKr();
     var kg = Math.round(total / C.krPerKg);
     var vars = {
       now: fmt(C.membersNow), goal: fmt(C.membersGoal), left: fmt(C.membersGoal - C.membersNow),
@@ -117,7 +118,6 @@
     update();
   }
 
-  // One-time DOM: links, tiers, axis, tiles, counter.
   $$('[data-link]').forEach(function (a) { a.href = L[a.dataset.link]; });
   C.tiers.forEach(function (kr) {
     var l = document.createElement('label');
@@ -148,7 +148,7 @@
   progress.setAttribute('aria-valuenow', C.membersNow);
   progress.firstElementChild.style.width = C.membersNow / C.membersGoal * 100 + '%';
 
-  // Events
+  // click, not change: a second click on the chosen pill clears it, and arrow keys also fire click on radios.
   $('#tiers').addEventListener('click', function (e) {
     var r = e.target;
     if (r.name !== 'tier') return;
@@ -157,17 +157,20 @@
     update();
   });
   custom.addEventListener('input', function () {
-    if (parseInt(custom.value, 10) > 0) {
+    if (customKr()) {
       $$('input[name=tier]').forEach(function (r) { r.checked = false; });
       lastTier = null;
     }
     update();
   });
   $$('input[name=membership]').forEach(function (r) { r.addEventListener('change', update); });
-  $('#pay').addEventListener('click', function () { $('#thanks').showModal(); });
+  $('#pay').addEventListener('click', function () {
+    var d = $('#thanks');
+    if (d.showModal) d.showModal();
+  });
   $('#lang').addEventListener('click', function () {
     lang = lang === 'no' ? 'en' : 'no';
-    localStorage.setItem('nmf-lang', lang);
+    try { localStorage.setItem('nmf-lang', lang); } catch (e) {}
     render();
   });
   $('#hamburger').addEventListener('click', function () {

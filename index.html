@@ -102,34 +102,32 @@
           <label class="custom">
             <span data-i18n="step2.customLabel"></span>
             <span class="custom-field">
-              <input type="number" id="custom" min="0" step="1" inputmode="numeric" data-i18n-attr="placeholder:step2.customPlaceholder">
+              <input type="number" id="custom" max="10000000" min="0" step="1" inputmode="numeric" data-i18n-attr="placeholder:step2.customPlaceholder">
               <span class="suffix">kr</span>
             </span>
           </label>
         </div>
-        <div>
-          <figure class="chart" id="chart">
-            <p class="kg-headline" id="kg-headline" aria-live="polite"></p>
-            <p class="kg-sub" data-i18n="step2.kgSub"></p>
-            <div class="chart-frame">
-              <div class="y-axis" id="y-axis" aria-hidden="true"></div>
-              <div class="plot">
-                <div class="ref" id="ref"><span class="ref-label" data-i18n="step2.referenceLine"></span></div>
-                <div class="bar" id="bar"></div>
-              </div>
+        <figure class="chart" id="chart">
+          <p class="kg-headline" id="kg-headline" aria-live="polite"></p>
+          <p class="kg-sub" data-i18n="step2.kgSub"></p>
+          <div class="chart-frame">
+            <div class="y-axis" id="y-axis" aria-hidden="true"></div>
+            <div class="plot">
+              <div class="ref" id="ref"><span class="ref-label" data-i18n="step2.referenceLine"></span></div>
+              <div class="bar" id="bar"></div>
             </div>
-            <figcaption class="small" data-i18n="step2.rateFootnote"></figcaption>
-          </figure>
-          <aside class="day">
-            <h3 data-i18n="step2.dayCard.title"></h3>
-            <ul>
-              <li data-i18n="step2.dayCard.line1"></li>
-              <li data-i18n="step2.dayCard.line2"></li>
-              <li data-i18n="step2.dayCard.line3"></li>
-            </ul>
-            <span class="tag" data-i18n="step2.dayCard.tag"></span>
-          </aside>
-        </div>
+          </div>
+          <figcaption class="small" data-i18n="step2.rateFootnote"></figcaption>
+        </figure>
+        <aside class="day">
+          <h3 data-i18n="step2.dayCard.title"></h3>
+          <ul>
+            <li data-i18n="step2.dayCard.line1"></li>
+            <li data-i18n="step2.dayCard.line2"></li>
+            <li data-i18n="step2.dayCard.line3"></li>
+          </ul>
+          <span class="tag" data-i18n="step2.dayCard.tag"></span>
+        </aside>
       </div>
       <div class="tiles" id="tiles" aria-hidden="true"></div>
       <p class="small" data-i18n="step2.equivalence.gridCaption"></p>
@@ -145,9 +143,9 @@
   <div class="cta">
     <div class="container">
       <button type="button" class="button" id="pay"><span data-i18n="cta.button"></span><span class="cta-amt" id="cta-amt"></span></button>
-      <p class="small" data-i18n="cta.note"></p>
     </div>
   </div>
+  <p class="container small cta-note" data-i18n="cta.note"></p>
 </main>
 
 <footer class="site-footer">
