@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bli medlem | Norges Miljøvernforbund</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/nmf-favicon-32.png" sizes="32x32">
+<link rel="icon" href="assets/nmf-favicon-192.png" sizes="192x192">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Zilla+Slab:wght@700&family=Literata:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="demo-banner" role="note" data-i18n="meta.demoBanner"></div>
+
+<header class="site-header" id="header">
+  <div class="nav-bar">
+    <a class="logo" href="https://www.nmf.no/"><img src="assets/nmf-logo-108.png" width="108" height="108" alt="Norges Miljøvernforbund"></a>
+    <a class="brand-text" href="https://www.nmf.no/" data-i18n="footer.org"></a>
+    <button class="hamburger" type="button" id="hamburger" aria-controls="menu" aria-expanded="false" aria-label="Meny"><span></span></button>
+    <nav class="menu" id="menu">
+      <ul class="nav">
+        <li><a data-link="hjem" data-i18n="nav.hjem"></a></li>
+        <li><a data-link="saker" data-i18n="nav.saker"></a></li>
+        <li><a data-link="kampanjer" data-i18n="nav.kampanjer"></a></li>
+        <li><a data-link="omNmf" data-i18n="nav.omNmf"></a></li>
+        <li><a data-link="publikasjoner" data-i18n="nav.publikasjoner"></a></li>
+      </ul>
+      <ul class="nav nav-right">
+        <li><a data-link="kontakt" data-i18n="nav.kontakt"></a></li>
+        <li><a data-link="doner" data-i18n="nav.doner"></a></li>
+        <li><a data-link="minSide" data-i18n="nav.minSide"></a></li>
+        <li><a class="btn-member" data-link="bliMedlem" aria-current="page" data-i18n="nav.bliMedlem"></a></li>
+        <li><button type="button" class="lang-toggle" id="lang" data-i18n="meta.langToggle"></button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-text">
+      <p class="eyebrow" data-i18n="hero.eyebrow"></p>
+      <h1 data-i18n="hero.title"></h1>
+      <p class="lead" data-i18n="hero.lead"></p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="card counter">
+      <p class="counter-label"><strong data-i18n="hero.counterLabel"></strong> <span class="tag" data-i18n="hero.exampleTag"></span></p>
+      <div class="progress" id="progress" role="progressbar" aria-valuemin="0"><span></span></div>
+      <p class="counter-left" data-i18n="hero.counterLeft"></p>
+      <p class="counter-note" data-i18n="hero.counterNote"></p>
+      <a class="small" target="_blank" rel="noopener" data-i18n="hero.counterSource" data-i18n-attr="href:hero.counterSourceUrl"></a>
+    </div>
+  </div>
+
+  <section class="container">
+    <div class="card step">
+      <h2 data-i18n="step1.heading"></h2>
+      <p class="intro" data-i18n="step1.intro"></p>
+      <div class="step1-grid">
+        <fieldset class="choices">
+          <legend data-i18n="step1.chooseLabel"></legend>
+          <label class="choice">
+            <input type="radio" name="membership" value="200" checked>
+            <span class="choice-name" data-i18n="step1.ordinary.name"></span>
+            <span class="choice-price"><strong data-i18n="step1.ordinary.price"></strong> <span data-i18n="step1.ordinary.per"></span></span>
+            <span class="choice-desc" data-i18n="step1.ordinary.desc"></span>
+            <span class="choice-counts" data-i18n="step1.countsAsMember"></span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="membership" value="50">
+            <span class="choice-name" data-i18n="step1.student.name"></span>
+            <span class="choice-price"><strong data-i18n="step1.student.price"></strong> <span data-i18n="step1.student.per"></span></span>
+            <span class="choice-desc" data-i18n="step1.student.desc"></span>
+            <span class="choice-counts" data-i18n="step1.countsAsMember"></span>
+          </label>
+        </fieldset>
+        <aside class="gift">
+          <div class="mug" aria-hidden="true">
+            <img src="assets/mug-fallback-red-ceramic-cc0-daderot.jpg" alt="">
+            <img class="mug-logo" src="assets/nmf-logo-108.png" alt="">
+          </div>
+          <span class="tag" data-i18n="step1.gift.proposalTag"></span>
+          <h3 data-i18n="step1.gift.title"></h3>
+          <p data-i18n="step1.gift.desc"></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="card step">
+      <h2 data-i18n="step2.heading"></h2>
+      <p class="intro" data-i18n="step2.intro"></p>
+      <div class="step2-grid">
+        <div>
+          <fieldset class="tiers" id="tiers"></fieldset>
+          <label class="custom">
+            <span data-i18n="step2.customLabel"></span>
+            <span class="custom-field">
+              <input type="number" id="custom" min="0" step="1" inputmode="numeric" data-i18n-attr="placeholder:step2.customPlaceholder">
+              <span class="suffix">kr</span>
+            </span>
+          </label>
+        </div>
+        <div>
+          <figure class="chart" id="chart">
+            <p class="kg-headline" id="kg-headline" aria-live="polite"></p>
+            <p class="kg-sub" data-i18n="step2.kgSub"></p>
+            <div class="chart-frame">
+              <div class="y-axis" id="y-axis" aria-hidden="true"></div>
+              <div class="plot">
+                <div class="ref" id="ref"><span class="ref-label" data-i18n="step2.referenceLine"></span></div>
+                <div class="bar" id="bar"></div>
+              </div>
+            </div>
+            <figcaption class="small" data-i18n="step2.rateFootnote"></figcaption>
+          </figure>
+          <aside class="day">
+            <h3 data-i18n="step2.dayCard.title"></h3>
+            <ul>
+              <li data-i18n="step2.dayCard.line1"></li>
+              <li data-i18n="step2.dayCard.line2"></li>
+              <li data-i18n="step2.dayCard.line3"></li>
+            </ul>
+            <span class="tag" data-i18n="step2.dayCard.tag"></span>
+          </aside>
+        </div>
+      </div>
+      <div class="tiles" id="tiles" aria-hidden="true"></div>
+      <p class="small" data-i18n="step2.equivalence.gridCaption"></p>
+      <p class="equiv" id="equiv"></p>
+    </div>
+  </section>
+
+  <section class="container facts">
+    <h2 data-i18n="facts.heading"></h2>
+    <div class="facts-grid" id="facts"></div>
+  </section>
+
+  <div class="cta">
+    <div class="container">
+      <button type="button" class="button" id="pay"><span data-i18n="cta.button"></span><span class="cta-amt" id="cta-amt"></span></button>
+      <p class="small" data-i18n="cta.note"></p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div><img src="assets/nmf-logo-108.png" width="108" height="108" alt="Norges Miljøvernforbund"></div>
+    <div>
+      <h3>Sidekart</h3>
+      <ul class="footer-links">
+        <li><a data-link="hjem" data-i18n="nav.hjem"></a></li>
+        <li><a data-link="saker" data-i18n="nav.saker"></a></li>
+        <li><a data-link="kampanjer" data-i18n="nav.kampanjer"></a></li>
+        <li><a data-link="omNmf" data-i18n="nav.omNmf"></a></li>
+        <li><a data-link="publikasjoner" data-i18n="nav.publikasjoner"></a></li>
+        <li><a data-link="kontakt" data-i18n="nav.kontakt"></a></li>
+        <li><a data-link="doner" data-i18n="nav.doner"></a></li>
+        <li><a data-link="bliMedlem" data-i18n="nav.bliMedlem"></a></li>
+        <li><a data-link="minSide" data-i18n="nav.minSide"></a></li>
+        <li><a data-link="vilkar">Vilkår</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Info</h3>
+      <p><strong>Adresse:</strong> <span data-i18n="footer.address"></span></p>
+      <p><strong>Epost:</strong> <a href="mailto:nmf@nmf.no" data-i18n="footer.email"></a></p>
+      <p><strong>Telefon:</strong> <a href="tel:+4755306700" data-i18n="footer.phone"></a></p>
+      <p data-i18n="footer.orgnr"></p>
+    </div>
+    <div>
+      <h3 class="xs">Ønsker du å kontakte oss?</h3>
+      <a class="button secondary" data-link="kontakt">Kontakt oss</a>
+      <h3 class="xxs">Følg oss</h3>
+      <ul class="footer-links">
+        <li><a href="https://www.facebook.com/miljovernforbundet/">Facebook</a></li>
+        <li><a href="https://www.instagram.com/miljovernforbundet/">Instagram</a></li>
+        <li><a href="https://www.tiktok.com/@miljovernforbundet_">TikTok</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container site-info">
+    <span>© 2026 <span data-i18n="footer.org"></span></span>
+    <span data-i18n="footer.demoNote"></span>
+  </div>
+</footer>
+
+<dialog id="thanks">
+  <img src="assets/nmf-logo-profundo-hovedlogo.png" width="88" height="88" alt="">
+  <h2 data-i18n="thanks.title"></h2>
+  <p data-i18n="thanks.body"></p>
+  <p data-i18n="thanks.closer"></p>
+  <form method="dialog"><button class="button" data-i18n="thanks.button"></button></form>
+</dialog>
+
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
